@@ -14,4 +14,4 @@ def login(email, password):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=4000)
+    app.run(debug=False, port=4000)

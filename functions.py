@@ -5,19 +5,10 @@ from bs4 import BeautifulSoup
 def login_website(account, password):
     s = requests.Session()
     payload = {
-        'login': account,
-        'password': password,
+        'login': str(account),
+        'password': str(password),
     }
     header = {
-        "accept-encoding": "gzip, deflate, br",
-        "accept-language": "en-US,en;q=0.9",
-        "content-length": "54",
-        "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
-        "origin": "https://applecity.ge",
-        "referer": "https://applecity.ge/login",
-        "sec-fetch-mode": "cors",
-        "sec-fetch-site": "same-origin",
-        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36",
         "x-october-request-handler": "onSignin",
         "x-requested-with": "XMLHttpRequest"
     }

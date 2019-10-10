@@ -4,15 +4,12 @@ from bs4 import BeautifulSoup
 
 
 def login_website(email, password, show_browser=False):
-    if not show_browser:  # do not show browser
-        # import options
+    if not show_browser:  
         from selenium.webdriver.chrome.options import Options
-        # add headless option
         options_ = Options()
         options_.add_argument("--headless")
-        # define browser
         browser = webdriver.Chrome(chrome_options=options_)
-    else:  # show browser
+    else:
         browser = webdriver.Chrome()
 
     browser.get(r"http://applecity.ge/login")

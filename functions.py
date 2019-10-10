@@ -5,8 +5,8 @@ from bs4 import BeautifulSoup
 def login_website(account, password):
     s = requests.Session()
     payload = {
-        'login': str(account),
-        'password': str(password),
+        'login': account,
+        'password': password,
     }
     header = {
         "x-october-request-handler": "onSignin",

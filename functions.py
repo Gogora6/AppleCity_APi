@@ -2,8 +2,36 @@ from selenium import webdriver
 import time
 from bs4 import BeautifulSoup
 
+def login_website(account, password):
+    s = requests.Session()
+    payload = {
+        'login': account,
+        'password': password,
+    }
+    header = {
+        "accept-encoding": "gzip, deflate, br",
+        "accept-language": "en-US,en;q=0.9",
+        "content-length": "54",
+        "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+        "origin": "https://applecity.ge",
+        "referer": "https://applecity.ge/login",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-site": "same-origin",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36",
+        "x-october-request-handler": "onSignin",
+        "x-requested-with": "XMLHttpRequest"
+    }
+    try:
+        s.post("http://applecity.ge/login", data=payload, headers=header, allow_redirects=False)
+        info = s.get("http://applecity.ge/profile")
+        soup = BeautifulSoup(info.content, "html.parser")
+        div = soup.find_all("input", {"id": "accountName"})
+        information = div[0].get("value")
+        return information
+    except:
+        return False
 
-def login_website(email, password, show_browser=False):
+def login_website_selenium(email, password, show_browser=False):
     if not show_browser:  
         from selenium.webdriver.chrome.options import Options
         options_ = Options()

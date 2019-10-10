@@ -1,12 +1,13 @@
 from flask import Flask, jsonify
-from functions import login_website
+from functions import AppleCity
 
 app = Flask(__name__)
 
 
 @app.route("/email=<string:email>&password=<string:password>", methods=['GET'])
 def login(email, password):
-    info = login_website(email, password)
+    user = AppleCity()
+    info = user.login_website(email, password)
     if not info:
         return jsonify({"status": 401, "message": 'bad credentials'})
     else:
@@ -14,4 +15,4 @@ def login(email, password):
 
 
 if __name__ == '__main__':
-    app.run(debug=False, port=4000)
+    app.run(debug=True, port=4000)
